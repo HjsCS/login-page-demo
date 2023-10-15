@@ -14,3 +14,9 @@
   word-spacing: -2px;
   cursor: default;
 }
+
+@media screen and (max-width: 1000px) {
+  .info_page_box {
+    width: 100vw;
+  }
+}
