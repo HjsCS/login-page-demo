@@ -60,17 +60,15 @@ const SignInForm = () => {
           passwordError ? "Password must be at least 6 characters" : ""
         }
       />
-      <div
-        className={style.sign_in_button_box}
-        style={{
-          backgroundColor: "#000",
-        }}
-      >
+      <div className={style.sign_in_button_box}>
         <Button
           variant="contained"
           type="submit"
           className={style.normal_button}
           onClick={handleSubmit}
+          style={{
+            backgroundColor: "#000",
+          }}
         >
           Sign in
         </Button>
