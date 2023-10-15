@@ -60,7 +60,12 @@ const SignInForm = () => {
           passwordError ? "Password must be at least 6 characters" : ""
         }
       />
-      <div className={style.sign_in_button_box}>
+      <div
+        className={style.sign_in_button_box}
+        style={{
+          backgroundColor: "#000",
+        }}
+      >
         <Button
           variant="contained"
           type="submit"
@@ -69,7 +74,14 @@ const SignInForm = () => {
         >
           Sign in
         </Button>
-        <Button variant="contained" className={style.google_button}>
+        <Button
+          variant="contained"
+          className={style.google_button}
+          style={{
+            backgroundColor: "#fff",
+            color: "#000",
+          }}
+        >
           <div>
             <GoogleIcon />
           </div>
