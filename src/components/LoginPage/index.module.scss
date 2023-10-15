@@ -1,0 +1,16 @@
+.login_page_box {
+  width: 42vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  word-spacing: -1px;
+}
+
+.components_box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}

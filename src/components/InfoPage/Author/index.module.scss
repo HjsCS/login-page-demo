@@ -1,0 +1,22 @@
+.author_box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  width: 98%;
+}
+
+.author_name {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -1px;
+}
+
+.stars {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-self: center;
+  gap: 8px;
+}

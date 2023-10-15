@@ -1,0 +1,26 @@
+.sign_in_button_box {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.normal_button {
+  background-color: black;
+  height: 3.5rem;
+}
+
+.google_button {
+  background-color: white;
+  color: black;
+  height: 3.5rem;
+  gap: 8px;
+}
+
+.normal_button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.google_button:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}

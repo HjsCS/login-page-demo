@@ -1,0 +1,16 @@
+.info_page_box {
+  color: #fff;
+  background-image: url(../../assets/InfoPageBackgroundImage.jpg);
+  background-size: cover;
+  background-position: bottom center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  width: 58vw;
+  height: 100vh;
+  padding-bottom: 2rem;
+  gap: 2.5rem;
+  word-spacing: -2px;
+  cursor: default;
+}
