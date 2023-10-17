@@ -12,7 +12,6 @@ const schema = yup
   .object({
     email: yup
       .string()
-      .trim()
       .email("Please input a valid email")
       .matches(
         /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
@@ -25,7 +24,6 @@ const schema = yup
       ),
     password: yup
       .string()
-      .trim()
       .min(8, "Password should be at least 8 characters long")
       .max(20, "Password should be no more than 20 characters long")
       .matches(/[A-Z]/, "Must contain at least one uppercase letter (A-Z)")
@@ -33,7 +31,7 @@ const schema = yup
       .matches(/[0-9]/, "Must contain at least one number (0-9)")
       .matches(
         /[^a-zA-Z0-9]/,
-        "Must contain at least one special character (!@#$%^&*...)"
+        "Must contain at least one special character (!@#$%^&*.,)"
       )
       .test(
         "no-spaces",
