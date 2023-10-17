@@ -3,90 +3,108 @@ import Button from "@mui/material/Button";
 import React from "react";
 import style from "./index.module.scss";
 import GoogleIcon from "@/assets/LoginPageGoogleIcon.svg";
+import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
+import * as yup from "yup";
+
+const schema = yup
+  .object({
+    email: yup
+      .string()
+      .trim()
+      .email("Please input a valid email")
+      .matches(
+        /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+        "Please input a valid email"
+      )
+      .test(
+        "no-spaces",
+        "Email should not have spaces",
+        (value) => !/\s/.test(value ?? "")
+      ),
+    password: yup
+      .string()
+      .trim()
+      .min(8, "Password should be at least 8 characters long")
+      .max(20, "Password should be no more than 20 characters long")
+      .matches(/[A-Z]/, "Must contain at least one uppercase letter (A-Z)")
+      .matches(/[a-z]/, "Must contain at least one lowercase letter (a-z)")
+      .matches(/[0-9]/, "Must contain at least one number (0-9)")
+      .matches(
+        /[^a-zA-Z0-9]/,
+        "Must contain at least one special character (!@#$%^&*...)"
+      )
+      .test(
+        "no-spaces",
+        "Password should not have spaces",
+        (value) => !/\s/.test(value ?? "")
+      ),
+  })
+  .required();
 
 const SignInForm = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [emailError, setEmailError] = useState(false);
-  const [passwordError, setPasswordError] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    control,
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
-  const validateEmail = (inputEmail: string) => {
-    var emailRegex = /\S+@\S+\.\S+/;
-    return emailRegex.test(inputEmail);
-  };
-
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-
-    if (!validateEmail(email)) {
-      setEmailError(true);
-    } else {
-      setEmailError(false);
-    }
-    if (password.length < 6) {
-      setPasswordError(true);
-    } else {
-      setPasswordError(false);
-    }
-
-    if (email && password) {
-      console.log(email, password);
-    } else {
-      console.log("Please fill in all fields");
-    }
-  };
+  const onSubmit = (data: any) => console.log(data);
 
   return (
-    <form className={style.sign_in_form_box}>
-      <TextField
-        className={style.email}
-        label="Email"
-        variant="standard"
-        onChange={(e) => setEmail(e.target.value)}
-        required
-        error={emailError}
-        helperText={emailError ? "Please enter a valid email" : ""}
+    <form onSubmit={handleSubmit(onSubmit)} className={style.sign_in_form_box}>
+      <Controller
+        name="email"
+        control={control}
+        defaultValue=""
+        render={({ field }) => (
+          <TextField
+            {...field}
+            label="Email"
+            variant="standard"
+            error={!!errors.email}
+            helperText={errors.email?.message}
+            required
+            className={style.email}
+          />
+        )}
       />
-      <TextField
-        className={style.password}
-        label="Password"
-        variant="standard"
-        type="password"
-        onChange={(e) => setPassword(e.target.value)}
-        required
-        error={passwordError}
-        helperText={
-          passwordError ? "Password must be at least 6 characters" : ""
-        }
+      <Controller
+        name="password"
+        control={control}
+        defaultValue=""
+        render={({ field }) => (
+          <TextField
+            {...field}
+            label="Password"
+            variant="standard"
+            error={!!errors.password}
+            helperText={errors.password?.message}
+            required
+            type="password"
+            className={style.password}
+          />
+        )}
       />
-      <div
-        className={style.sign_in_button_box}
-        style={{
-          backgroundColor: "#000",
-        }}
-      >
+
+      <div className={style.sign_in_button_box}>
         <Button
           variant="contained"
           type="submit"
           className={style.normal_button}
-          onClick={handleSubmit}
         >
-          Sign in
+          Sign In
         </Button>
         <Button
           variant="contained"
-          className={style.google_button}
-          style={{
-            backgroundColor: "#fff",
-            color: "#000",
-          }}
+          startIcon={<GoogleIcon />}
+          className={style.normal_button}
         >
-          <div>
-            <GoogleIcon />
-          </div>
-          {"  "}
-          Sign in with Google
+          Sign In with Google
         </Button>
       </div>
     </form>
