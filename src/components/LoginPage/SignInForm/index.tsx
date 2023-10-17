@@ -96,6 +96,10 @@ const SignInForm = () => {
           variant="contained"
           type="submit"
           className={style.normal_button}
+          style={{
+            backgroundColor: "#000",
+          }}
+
         >
           Sign In
         </Button>
