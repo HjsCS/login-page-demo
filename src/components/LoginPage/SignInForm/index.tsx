@@ -12,15 +12,15 @@ const schema = yup
   .object({
     email: yup
       .string()
-      .email("Please input a valid email")
-      .matches(
-        /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-        "Please input a valid email"
-      )
       .test(
         "no-spaces",
         "Email should not have spaces",
         (value) => !/\s/.test(value ?? "")
+      )
+      .email("Please input a valid email")
+      .matches(
+        /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+        "Please input a valid email"
       ),
     password: yup
       .string()
