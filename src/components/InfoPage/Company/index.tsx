@@ -4,17 +4,17 @@ import style from "./index.module.scss";
 import LeftArrow from "@/assets/InfoPageLeftArrow.svg";
 import RightArrow from "@/assets/InfoPageRightArrow.svg";
 
-const Company = () => {
+const Company = (props: any) => {
   return (
-    <div className={style.company_box}>
+    <div className={style.company_box} {...props}>
       <div className={style.company_name_box}>
-        <CompanyLogo />
+        <CompanyLogo data-testid="companyLogo" />
         <p>Bolt Agency</p>
       </div>
 
       <div className={style.arrows_box}>
-        <LeftArrow />
-        <RightArrow />
+        <LeftArrow data-testid="leftArrow" />
+        <RightArrow data-testid="rightArrow" />
       </div>
     </div>
   );

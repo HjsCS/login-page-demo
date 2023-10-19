@@ -7,9 +7,9 @@ import style from "./index.module.scss";
 const InfoPage = () => {
   return (
     <div className={style.info_page_box}>
-      <Quote />
-      <Author />
-      <Company />
+      <Quote data-testid="quote" />
+      <Author data-testid="author" />
+      <Company data-testid="company" />
     </div>
   );
 };
